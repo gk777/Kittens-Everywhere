@@ -19,9 +19,19 @@
 
   }
 
+  function kittenImg(){
+    if(kittens_on){
+      return {'path':'icon.png'}
+    } else{
+      return {'path':'iconbw21.jpg'}
+    }
+
+  }
+
   function sendPlaceKittens() {
     kittens_on = !kittens_on;
     chrome.browserAction.setTitle(kittenTitle());
+    chrome.browserAction.setIcon(kittenImg());
     chrome.tabs.getSelected(null, function(tab) {
       chrome.tabs.sendRequest(tab.id, {}, function(response) {
         return;
