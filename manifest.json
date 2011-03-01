@@ -1,0 +1,24 @@
+{
+  "name": "Kittens Everywhere",
+  "version": "1.0",
+  "description": "You know what's better than regular images on the web? Kittens. 
+    Kittens Everywhere turns every image you see into an adorable kitten picture. You can toggle this off and on as you like, but  we can't imagine why you would ever turn this off.
+    (images powered by placekitten.com)",
+  "background_page": "background.html",
+  "permissions": [
+    "tabs", "http://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": ["jquery.js", "placekittens.js"]
+    }
+  ],
+  "browser_action": {
+      "default_title": "Kitten mode: OFF",
+      "default_icon": "icon.png"
+  },
+  "icons": { "16": "icon16.jpg",
+             "48": "icon48.jpg",
+             "128": "icon128.jpg" }
+}

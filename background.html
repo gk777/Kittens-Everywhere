@@ -1,0 +1,35 @@
+<html>
+<head>
+<script>
+
+ kittens_on = false;
+
+ chrome.extension.onRequest.addListener(
+  function(request, sender, sendResponse) {
+    if (request.are_kittens_on)
+      sendResponse({kittens: kittens_on});
+  });
+
+  function kittenTitle(){
+    if(kittens_on){
+      return {'title':'Kitten mode: ON'}
+    } else{
+      return {'title':'Kitten mode: OFF'}
+    }
+
+  }
+
+  function sendPlaceKittens() {
+    kittens_on = !kittens_on;
+    chrome.browserAction.setTitle(kittenTitle());
+    chrome.tabs.getSelected(null, function(tab) {
+      chrome.tabs.sendRequest(tab.id, {}, function(response) {
+        return;
+      });
+    });
+  };
+
+  chrome.browserAction.onClicked.addListener(sendPlaceKittens);
+</script>
+</head>
+</html>
